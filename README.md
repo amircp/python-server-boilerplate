@@ -11,7 +11,7 @@ Download vagrant: http://www.vagrantup.com/
 
 Install cuisine:
 
-  sudo pip install cuisine
+	sudo pip install cuisine
 
 
 #### How to use ####
