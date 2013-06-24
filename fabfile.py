@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 """
-    Setup for provisioning remote servers
+    Provisioning and deploy in remote servers
     Author  :   Alvaro Lizama Molina <nekrox@gmail.com>
 """
 
 from fabric.api import env
-from provisioning import configure_host
+from provision import update_host, upgrade_host, configure_host
 
 
 ##
@@ -14,12 +14,12 @@ from provisioning import configure_host
 ##
 
 def staging():
-    env.hosts = []
+    env.hosts = ['192.168.50.1']
 
 def production():
-    env.hosts = []
+    env.hosts = ['192.168.50.1']
 
 
 ##
-## Deploy and remote hosts commands
+## Deploy and remote tasks for remote hosts
 ##
