@@ -5,6 +5,7 @@
     Author  :   Alvaro Lizama Molina <nekrox@gmail.com>
 """
 
+import cuisine
 from fabric.api import env
 from provision import update_host, upgrade_host, configure_host
 
@@ -12,6 +13,9 @@ from provision import update_host, upgrade_host, configure_host
 ##
 ## Remote enviroments
 ##
+
+def devel():
+    env.hosts = ['192.168.50.1']
 
 def staging():
     env.hosts = ['192.168.50.1']

@@ -48,13 +48,6 @@ def install():
     puts(green('-> Installing iftop'))
     cuisine.package_ensure("iftop")
 
-    
-##
-## Config 
-##
-def config():
-    """ Config recipe """
-
     if not cuisine.user_check(DEFAULT_USER):
 
         puts(green('-> Creating default user: %s' % DEFAULT_USER))
@@ -67,7 +60,7 @@ def config():
 
         puts(green('-> Creating tmux config'))
         cuisine.file_upload('/home/%s/.tmux.conf' % DEFAULT_USER, 
-                './provision/recipes/setup/tmux.conf',
+                './provision/config/tmux.conf',
                 sudo=DEFAULT_USER)
 
         puts(green('-> Config SSH')) 
@@ -78,7 +71,7 @@ def config():
     if cuisine.user_check('vagrant'):
         puts(green('-> Creating tmux config'))        
         cuisine.file_upload('/home/vagrant/.tmux.conf', 
-                './provision/recipes/setup/tmux.conf',
+                './provision/config/tmux.conf',
                 sudo='vagrant')
 
         puts(green('-> Config SSH for vagrant')) 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    Uwsgi recipe
+    GIT recipe
     Author  :   Alvaro Lizama Molina <nekrox@gmail.com>
 """
 
@@ -17,16 +17,8 @@ def install():
     """ Install packages """
 
     # Install packages
-    puts(green('-> Installing uwsgi'))
-    cuisine.package_ensure('uwsgi')
-    cuisine.package_ensure('uwsgi-plugin-python')
+    puts(green('-> Installing gitolite'))
+    cuisine.package_ensure('gitolite')
         
-
-##
-## Config 
-##
-def config():
-    """ Config recipe """
-    pass
-
-    
+    puts(green('-> Creating git user'))
+    cuisine.user_ensure('git')

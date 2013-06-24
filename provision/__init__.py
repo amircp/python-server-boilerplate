@@ -14,27 +14,25 @@ from recipes import setup, python, nginx, uwsgi, postgres, git
 
 
 ##
-## Configure host 
+## Configure host
 ##
 def configure_host():
     """ Configure host with recipes """
+
     puts(red('-- Configuring host '))    
     puts(green('### Start host configuration  ###'))
 
     ## Basic setup 
     setup.install()
-    setup.config()
 
     # Call recipeshere
     # Comment/uncomment examples
 
     python.install()
-    python.config()    
     nginx.install()
     uwsgi.install()
     postgres.install()
     git.install()
-    git.config()
 
 
 ##

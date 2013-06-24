@@ -24,11 +24,4 @@ def install():
         cuisine.package_update()
     cuisine.package_ensure('postgresql')
     cuisine.package_ensure('postgresql-server-dev-9.2')
-        
-
-##
-## Config 
-##
-def config():
-    """ Config recipe """
-    pass
+     
