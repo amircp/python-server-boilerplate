@@ -1,4 +1,4 @@
-# Boilerplate for python web development servers #
+### Boilerplate for python web development servers ###
 ##### Provisioning with fabric/cuisine on remote hosts and vagrant boxes #####
 
 
