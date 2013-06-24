@@ -19,3 +19,10 @@ def install():
     # Install packages
     puts(green('-> Installing nginx'))
     cuisine.package_ensure('nginx')
+
+    puts(green('-> Creating apps user'))
+    cuisine.user_ensure('apps')
+   
+    puts(green('-> Creating dirs for web apps'))
+    cuisine.dir_ensure('/home/apps/www')
+    cuisine.dir_ensure('/home/apps/logs')

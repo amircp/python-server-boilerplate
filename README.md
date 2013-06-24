@@ -23,12 +23,13 @@ Install cuisine:
 - Add or edit config files in __provision/config__.
 - Edit __Vagrantfile__.
     - You can add or change the command to execute for provisioning in __fab.tasks = ["configure_host"]__.
-    - You can change the vbox ip in __config.vm.network :private_network, ip: "192.168.50.1"__vagrant.
+    - You can change the vbox ip in __config.vm.network :private_network, ip: "192.168.50.4"__vagrant.
     - You can comment/uncomment others options.
 
-##### Test in vagrant #####
+##### Run vagrant #####
 
 - Run __vagrant up__ for exec configure_host command in vagrant box.
+- Run __vagrant ssh__ for enter in to vagrant box.
 
 ##### Setup for remote hosts #####
 
@@ -39,11 +40,18 @@ Install cuisine:
 - Run __fab <enviroment> configure_host__ for provisioning in a remote host.
 - Run __fab <enviroment> update_host__ for update packages database in a remote host.
 - Run __fab <enviroment> upgrade_host__ for upgrade packages in a remote host.
-- You can use the remote host commands using an ip for the vagrant box(See Vagrantfile).
+- Run __fab__ for see all commands.
+
+- You can use the remote host commands using an ip for the vagrant box(See Vagrantfile and fabfile.py).
 
 ##### Create new commands for remote hosts #####
 
 - You can add more functions for deploy or remote tasks in __fabfile.py__.
+
+##### Test your app in vagrant #####
+
+- You can put your source code in __src__, vagrant mount it in __/home/vagrant/app__.
+- You must create a recipe for config your app.
 
 
 #### Include recipes ####
@@ -65,11 +73,9 @@ Install cuisine:
     
 - Nginx
     - Install nginx
-    - Create VHOST (Only for remote hosts)
 
 - Uwsgi
     - Install Uwsgi
-    - Create new python app (Only for remote hosts)
 
 - Postgres
     - Install postgres
