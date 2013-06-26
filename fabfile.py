@@ -14,10 +14,10 @@ from provision import *
 ## Remote enviroments
 ##
 
-def vagrant():
+def development():
     """ Setup for vagrant box """
     env.hosts = ['vagrant@192.168.13.37:22']
-    env.key_filename = ''
+    env.password = 'vagrant'
 
 def staging():
     """ Setup for staging enviroments """    

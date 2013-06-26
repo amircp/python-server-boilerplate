@@ -28,8 +28,8 @@ def install():
     puts(green('-> Configre postgres user login'))    
     old_srt = "local   all             all                                     peer"
     new_srt = "local   all             all                                     trust"
-    cuisine.sudo('echo "local       %s     %s           trust" >> /etc/postgresql/9.2/main/pg_hba.conf' % (db, username))
     cuisine.sudo('sed -i "s/%s/%s/g" /etc/postgresql/9.2/main/pg_hba.conf' % (old_srt, new_srt))
+    cuisine.sudo('/etc/init.d/postgresql restart')
     
 
 ##
