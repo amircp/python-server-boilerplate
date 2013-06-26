@@ -26,10 +26,9 @@ def configure_host():
     puts(green('--> Start host configuration'))
     username = DEFAULT_USERNAME
     password = getpass.getpass('Enter your password: ')
-    public_key = raw_input('Public key path (Press enter to ignore): ')
 
     ## Basic setup 
-    setup.install(username, password, public_key)
+    setup.install(username, password)
 
     # Call recipeshere
     # Comment/uncomment examples
