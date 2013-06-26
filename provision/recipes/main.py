@@ -43,6 +43,9 @@ def install():
     puts(green('-> Installing iftop'))
     cuisine.package_ensure("iftop")
 
+    puts(green('-> Installing git'))
+    cuisine.package_ensure("git")
+
     puts(green('-> Configuring SSHD'))        
     cuisine.sudo('sed -i "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config')
     cuisine.sudo('sed -i "s/LoginGraceTime 120/LoginGraceTime 30/g" /etc/ssh/sshd_config') 

@@ -10,7 +10,7 @@ from provision.enviroments import development, staging, production
 from provision import settings
 
 # Import recipes here
-from provision.recipes import main, python, nginx, uwsgi, postgres, git
+from provision.recipes import main, python, nginx, uwsgi, postgres, gitolite
 
 
 ##
@@ -30,4 +30,8 @@ def setup_host():
     nginx.install()
     uwsgi.install()
     postgres.install()
-    git.install()
+
+
+def install_git_server():
+    """ Install and config gitolite """
+    gitolite.install()

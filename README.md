@@ -70,8 +70,7 @@ Install cuisine:
     - Create database
     - Grant permissions 
 
-- GIT 
-    - Install GIT
+- Gitolite 
     - Install gitolite
     - Create user for git
     - Config gitolite 
