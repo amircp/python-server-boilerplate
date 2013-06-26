@@ -27,8 +27,3 @@ def install():
 
     puts(green('-> Install python virtualenv wrapper'))
     cuisine.sudo('pip install virtualenvwrapper')
-
-    if cuisine.user_check('vagrant'):
-        puts(green('-> Config virtualenvwrapper for vagrant user'))    
-        cuisine.run('echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc')
-        cuisine.run('source /usr/local/bin/virtualenvwrapper.sh')

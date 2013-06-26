@@ -22,6 +22,7 @@ Install cuisine:
 - Add or edit cuisine/fabric scripts in __provision/recipes__.
 - Add or edit config files in __provision/config__.
 - The main provisioning function is __setup_hosts__ in __fabfile.py__, you can edit this function or add more.
+- You can add more enviroments in __provision/enviroments.py__.
 - Edit __settings.json__ for add staging or production hosts/public_keys. Also you can edit options for vagrant.
 
 ##### Run vagrant #####
@@ -48,13 +49,12 @@ Install cuisine:
     - Install nano
     - Install tmux
     - Install some util libs
-    - Config tmux for default user and vagrant user
+    - Config tmux for vagrant user
 
 - Python
     - Install python and python development files
     - Install pip
     - Install virtualenvs
-    - Config virtualenvwrapper for vagrant
     
 - Nginx
     - Install nginx
