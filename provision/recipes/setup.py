@@ -5,7 +5,6 @@
     Author  :   Alvaro Lizama Molina <nekrox@gmail.com>
 """
 
-import getpass
 import cuisine
 from fabric.colors import red, green
 from fabric.utils import puts
@@ -17,8 +16,42 @@ DEFAULT_USER = 'nekro'
 ##
 ## Install packages 
 ##
-def install():
+def install(username, password, public_key):
     """ Install packages """
+
+    if not cuisine.user_check(username):
+
+        puts(green('-> Creating default user: %s' % username))
+        cuisine.user_create(username, shell='/bin/bash')
+        cuisine.user_passwd(username, password, encrypted_passwd=False)
+
+        puts(green('-> Uploading public key'))    
+        cuisine.file_upload('~/.ssh/authorized_keys', public_key)
+
+        puts(green('-> Adding user to sudo'))
+        cuisine.group_user_add('sudo', username)
+
+        puts(green('-> Creating tmux config'))
+        cuisine.file_upload('/home/%s/.tmux.conf' % username, 
+                './provision/config/tmux.conf',
+                sudo=username)
+
+        puts(green('-> Config SSH')) 
+        cuisine.sudo('sed -i "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config')
+        cuisine.sudo('sed -i "s/LoginGraceTime 120/LoginGraceTime 30/g" /etc/ssh/sshd_config')
+        cuisine.sudo('echo "AllowUsers %s" >> /etc/ssh/sshd_config' % username)
+
+    if cuisine.user_check('vagrant') and not cuisine.file_exists('/home/vagrant/.tmux.conf'):
+        puts(green('-> Creating tmux config'))        
+        cuisine.file_upload('/home/vagrant/.tmux.conf', 
+                './provision/config/tmux.conf',
+                sudo='vagrant')
+
+        puts(green('-> Config SSH for vagrant')) 
+        cuisine.sudo('sed -i "s/AllowUsers {0}/AllowUsers {0} vagrant/g" /etc/ssh/sshd_config'.format(username))
+
+    puts(green('-> Restart SSHD')) 
+    cuisine.sudo('/etc/init.d/ssh restart')
 
     # Install packages
     puts(green('-> Installing nano'))
@@ -48,35 +81,4 @@ def install():
     puts(green('-> Installing iftop'))
     cuisine.package_ensure("iftop")
 
-    if not cuisine.user_check(DEFAULT_USER):
-
-        puts(green('-> Creating default user: %s' % DEFAULT_USER))
-        cuisine.user_create(DEFAULT_USER)
-        password = getpass.getpass('Enter your password: ')
-        cuisine.user_passwd(DEFAULT_USER, password, encrypted_passwd=False)
-
-        puts(green('-> Adding user to sudo'))
-        cuisine.group_user_add('sudo', DEFAULT_USER)
-
-        puts(green('-> Creating tmux config'))
-        cuisine.file_upload('/home/%s/.tmux.conf' % DEFAULT_USER, 
-                './provision/config/tmux.conf',
-                sudo=DEFAULT_USER)
-
-        puts(green('-> Config SSH')) 
-        cuisine.sudo('sed -i "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config')
-        cuisine.sudo('sed -i "s/LoginGraceTime 120/LoginGraceTime 30/g" /etc/ssh/sshd_config')
-        cuisine.sudo('echo "AllowUsers nekro" >> /etc/ssh/sshd_config')
-
-    if cuisine.user_check('vagrant'):
-        puts(green('-> Creating tmux config'))        
-        cuisine.file_upload('/home/vagrant/.tmux.conf', 
-                './provision/config/tmux.conf',
-                sudo='vagrant')
-
-        puts(green('-> Config SSH for vagrant')) 
-        cuisine.sudo('sed -i "s/AllowUsers nekro/AllowUsers nekro vagrant/g" /etc/ssh/sshd_config')
-
-    puts(green('-> Restart SSHD')) 
-    cuisine.sudo('/etc/init.d/ssh restart')
     

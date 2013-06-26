@@ -21,7 +21,7 @@ def install():
     cuisine.package_ensure("python")
     
     puts(green('-> Installing python-dev'))
-    cuisine.package_ensure("python")
+    cuisine.package_ensure("python-dev")
 
     puts(green('-> Installing python-pip'))
     cuisine.package_ensure("python-pip")

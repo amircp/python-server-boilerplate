@@ -22,9 +22,9 @@ Install cuisine:
 - Add or edit cuisine/fabric scripts in __provision/recipes__ and edit __provision/\_\_init\_\_.py__ for call recipes (see source code).
 - Add or edit config files in __provision/config__.
 - Edit __Vagrantfile__.
-    - You can add or change the command to execute for provisioning in __fab.tasks = ["configure_host"]__.
-    - You can change the vbox ip in __config.vm.network :private_network, ip: "192.168.50.4"__vagrant.
-    - You can comment/uncomment others options.
+    - Add or change the command to execute for provisioning in __fab.tasks = ["configure_host"]__.
+    - Change the vbox ip in __config.vm.network :private_network, ip: "192.168.13.37"__vagrant.
+    - Comment/uncomment others options.
 
 ##### Run vagrant #####
 
@@ -40,9 +40,7 @@ Install cuisine:
 - Run __fab <enviroment> configure_host__ for provisioning in a remote host.
 - Run __fab <enviroment> update_host__ for update packages database in a remote host.
 - Run __fab <enviroment> upgrade_host__ for upgrade packages in a remote host.
-- Run __fab__ for see all commands.
-
-- You can use the remote host commands using an ip for the vagrant box(See Vagrantfile and fabfile.py).
+- See __provision/\_\_init\_\_.py__ for commands of the basic recipes.
 
 ##### Create new commands for remote hosts #####
 
@@ -50,7 +48,7 @@ Install cuisine:
 
 ##### Test your app in vagrant #####
 
-- You can put your source code in __src__, vagrant mount it in __/home/vagrant/app__.
+- Put your source code in __src__, vagrant mount it in __/home/vagrant/app__.
 - You must create a recipe for config your app.
 
 

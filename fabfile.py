@@ -7,8 +7,8 @@
 
 import cuisine
 from fabric.api import env
-from provision import update_host, upgrade_host, configure_host
-from provision.recipes import git, postgres 
+from provision import *
+
 
 ##
 ## Remote enviroments
@@ -16,30 +16,21 @@ from provision.recipes import git, postgres
 
 def vagrant():
     """ Setup for vagrant box """
-    env.hosts = ['nekro@192.168.50.4']
+    env.hosts = ['vagrant@192.168.13.37:22']
+    env.key_filename = ''
 
 def staging():
     """ Setup for staging enviroments """    
-    env.hosts = ['nekro@192.168.50.4:22']
+    env.hosts = []
+    env.key_filename = ''
 
 def production():
     """ Setup for production enviroments """    
-    env.hosts = ['nekro@192.168.50.4:22']
+    env.hosts = []
+    env.key_filename = ''
+    
 
 
 ##
 ## Deploy and remote tasks for remote hosts
 ##
-
-def configure_git():
-    """ Config gitolite """    
-    git.config()
-
-def create_user():
-    """ Create postgres user """    
-    postgres.create_user()
-
-def create_db():
-    """ Create postgres database """    
-    postgres.create_db()
-

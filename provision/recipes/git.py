@@ -27,12 +27,11 @@ def install():
 ##
 ## Tasks for remote hosts
 ##
-def config():
+def config(public_key):
     """ Config gitolite """
 
     puts(green('-> Uploading admin public key'))    
-    admin_key = raw_input('SSH public key path: ')
-    cuisine.file_upload('/tmp/admin.pub', admin_key)
+    cuisine.file_upload('/tmp/admin.pub', public_key)
     
     # Launch gitolite config
     puts(green('-> Configure gitolite'))
