@@ -24,9 +24,10 @@ def install(username, password, public_key):
         puts(green('-> Creating default user: %s' % username))
         cuisine.user_create(username, shell='/bin/bash')
         cuisine.user_passwd(username, password, encrypted_passwd=False)
-
-        puts(green('-> Uploading public key'))    
-        cuisine.file_upload('~/.ssh/authorized_keys', public_key)
+        
+        if public_key != '':
+            puts(green('-> Uploading public key'))    
+            cuisine.file_upload('~/.ssh/authorized_keys', public_key)
 
         puts(green('-> Adding user to sudo'))
         cuisine.group_user_add('sudo', username)
