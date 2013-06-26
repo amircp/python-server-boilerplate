@@ -6,6 +6,7 @@
 """
 
 import cuisine
+import getpass
 from provision.enviroments import development, staging, production
 from provision import settings
 
@@ -14,7 +15,7 @@ from provision.recipes import main, python, nginx, uwsgi, postgres, gitolite
 
 
 ##
-## Commands for remote hosts 
+## Default commands 
 ##
 
 def setup_host():
@@ -22,6 +23,9 @@ def setup_host():
 
     ## Install basic packages 
     main.install()
+
+    ## Main Setup
+    main.setup()
 
     # Call recipeshere
     # Comment/uncomment examples
@@ -34,4 +38,9 @@ def setup_host():
 
 def install_git_server():
     """ Install and config gitolite """
-    gitolite.install()
+    gitolite.install() 
+
+
+##
+## Custom commands 
+##

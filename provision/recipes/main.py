@@ -9,7 +9,6 @@ import cuisine
 from fabric.colors import green
 from fabric.utils import puts
 
-
 ##
 ## Install packages 
 ##
@@ -46,10 +45,15 @@ def install():
     puts(green('-> Installing git'))
     cuisine.package_ensure("git")
 
-    puts(green('-> Configuring SSHD'))        
-    cuisine.sudo('sed -i "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config')
-    cuisine.sudo('sed -i "s/LoginGraceTime 120/LoginGraceTime 30/g" /etc/ssh/sshd_config') 
 
+##
+## Main setup
+##
+def setup():
+    """ Main setup"""
+
+    puts(green('-> Configuring SSHD')) 
+    cuisine.sudo('sed -i "s/LoginGraceTime 120/LoginGraceTime 30/g" /etc/ssh/sshd_config') 
     puts(green('-> Restart SSHD')) 
     cuisine.sudo('/etc/init.d/ssh restart')
 

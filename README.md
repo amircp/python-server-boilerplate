@@ -23,7 +23,7 @@ Install cuisine:
 - Add or edit config files in __provision/config__.
 - The main provisioning function is __setup_hosts__ in __fabfile.py__, you can edit this function or add more.
 - You can add more enviroments in __provision/enviroments.py__.
-- Edit __settings.json__ for add staging or production hosts/public_keys. Also you can edit options for vagrant.
+- Edit __settings.json__ for add staging or production hosts/public_keys. Also you can edit options for vagrant or add new options for your commands.
 
 ##### Run vagrant #####
 
