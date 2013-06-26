@@ -43,4 +43,5 @@ def create_db(db, username):
     puts(green('-> Creating postgres database'))
     cuisine.sudo('psql -c "CREATE DATABASE %s;"' % db, user='postgres')
     cuisine.sudo('psql -c "GRANT ALL PRIVILEGES ON DATABASE %s to %s;"' % (db, username), user='postgres')
+    cuisine.sudo('echo "local       %s     %s           trust" >> /etc/postgresql/9.2/main/pg_hba.conf' % (db, username))
 

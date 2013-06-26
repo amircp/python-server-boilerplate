@@ -25,7 +25,7 @@ def configure_host():
     puts(red('-- Configuring host '))    
     puts(green('--> Start host configuration'))
     username = DEFAULT_USERNAME
-    password = getpass.getpass('Enter your password: ')
+    password = getpass.getpass('Enter new username your password: ')
 
     ## Basic setup 
     setup.install(username, password)
