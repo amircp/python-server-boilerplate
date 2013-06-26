@@ -19,37 +19,26 @@ Install cuisine:
 
 ##### Setup provisioning #####
 
-- Add or edit cuisine/fabric scripts in __provision/recipes__ and edit __provision/\_\_init\_\_.py__ for call recipes (see source code).
+- Add or edit cuisine/fabric scripts in __provision/recipes__.
 - Add or edit config files in __provision/config__.
-- Edit __Vagrantfile__.
-    - Add or change the command to execute for provisioning in __fab.tasks = ["configure_host"]__.
-    - Change the vbox ip in __config.vm.network :private_network, ip: "192.168.13.37"__vagrant.
-    - Comment/uncomment others options.
+- The main provisioning function is __setup_hosts__ in __fabfile.py__, you can edit this function or add more.
+- Edit __settings.json__ for add staging or production hosts/public_keys. Also you can edit options for vagrant.
 
 ##### Run vagrant #####
 
-- Run __vagrant up__ for exec configure_host command in vagrant box.
+- If you need port redirect for vagrant edit the __Vagrantfile__.
+- Run __vagrant up__ for exec setup_host command in vagrant box.
 - Run __vagrant ssh__ for enter in to vagrant box.
 
-##### Setup for remote hosts #####
+##### Run other commands in enviroments #####
 
-- Edit __fabfile.py__ and add remote ip addresses for server enviroments.
-
-##### Commands for remote hosts #####
-
-- Run __fab <enviroment> configure_host__ for provisioning in a remote host.
-- Run __fab <enviroment> update_host__ for update packages database in a remote host.
-- Run __fab <enviroment> upgrade_host__ for upgrade packages in a remote host.
-- See __provision/\_\_init\_\_.py__ for commands of the basic recipes.
-
-##### Create new commands for remote hosts #####
-
-- You can add more functions for deploy or remote tasks in __fabfile.py__.
+- For run a command of the __fabfile.py__ in vagrant just type __fab development <command>__.
+- For run a command of the __fabfile.py__ in staging just type __fab staging <command>__.
+- For run a command of the __fabfile.py__ in production just type __fab production <command>__.
 
 ##### Test your app in vagrant #####
 
-- Put your source code in __src__, vagrant mount it in __/home/vagrant/app__.
-- You must create a recipe for config your app.
+- Put your source code in __src__, vagrant mount it in __/home/vagrant/src__.
 
 
 #### Include recipes ####
@@ -59,8 +48,6 @@ Install cuisine:
     - Install nano
     - Install tmux
     - Install some util libs
-    - Create default user
-    - Config sudo
     - Config tmux for default user and vagrant user
 
 - Python
@@ -71,18 +58,21 @@ Install cuisine:
     
 - Nginx
     - Install nginx
+    - Create user for apps
+    - Create dir for apps and logs
 
 - Uwsgi
     - Install Uwsgi
 
 - Postgres
     - Install postgres
-    - Create user (Only for remote hosts)    
-    - Create database (Only for remote hosts)
+    - Create user    
+    - Create database
+    - Grant permissions 
 
 - GIT 
     - Install GIT
     - Install gitolite
     - Create user for git
-    - Config gitolite (Only for remote hosts)
+    - Config gitolite 
     
