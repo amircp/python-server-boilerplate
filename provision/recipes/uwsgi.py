@@ -14,9 +14,8 @@ from fabric.utils import puts
 ## Install packages 
 ##
 def install():
-    """ Install packages """
+    """ Install uwsgi packages """
 
-    # Install packages
     puts(green('-> Installing uwsgi'))
     cuisine.package_ensure('uwsgi')
     cuisine.package_ensure('uwsgi-plugin-python')

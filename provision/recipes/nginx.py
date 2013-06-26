@@ -6,7 +6,7 @@
 """
 
 import cuisine
-from fabric.colors import red, green
+from fabric.colors import green
 from fabric.utils import puts
 
 
@@ -14,9 +14,8 @@ from fabric.utils import puts
 ## Install packages 
 ##
 def install():
-    """ Install packages """
+    """ Install ngix packages """
 
-    # Install packages
     puts(green('-> Installing nginx'))
     cuisine.package_ensure('nginx')
 

@@ -14,7 +14,7 @@ module VagrantPlugins
       end
 
       def finalize!
-        @fabfile_path = "provision/__init__.py" if @fabfile_path == UNSET_VALUE
+        @fabfile_path = "fabfile.py" if @fabfile_path == UNSET_VALUE
         @fabric_path = "fab" if @fabric_path == UNSET_VALUE
         @python_path = "python" if @python_path == UNSET_VALUE
         @tasks = [] if @tasks == UNSET_VALUE

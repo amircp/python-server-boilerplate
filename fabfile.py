@@ -6,31 +6,28 @@
 """
 
 import cuisine
-from fabric.api import env
-from provision import *
+from provision.enviroments import development, staging, production
+from provision import settings
+
+# Import recipes here
+from provision.recipes import main, python, nginx, uwsgi, postgres, git
 
 
 ##
-## Remote enviroments
+## Commands for remote hosts 
 ##
 
-def development():
-    """ Setup for vagrant box """
-    env.hosts = ['vagrant@192.168.13.37:22']
-    env.password = 'vagrant'
+def setup_host():
+    """ Configure host with recipes """
 
-def staging():
-    """ Setup for staging enviroments """    
-    env.hosts = []
-    env.key_filename = ''
+    ## Install basic packages 
+    main.install()
 
-def production():
-    """ Setup for production enviroments """    
-    env.hosts = []
-    env.key_filename = ''
-    
+    # Call recipeshere
+    # Comment/uncomment examples
 
-
-##
-## Deploy and remote tasks for remote hosts
-##
+    python.install()
+    nginx.install()
+    uwsgi.install()
+    postgres.install()
+    git.install()

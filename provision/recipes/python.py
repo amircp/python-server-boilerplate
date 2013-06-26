@@ -14,9 +14,8 @@ from fabric.utils import puts
 ## Install packages 
 ##
 def install():
-    """ Install packages """
+    """ Install python packages """
 
-    # Install packages
     puts(green('-> Installing python'))
     cuisine.package_ensure("python")
     
@@ -33,5 +32,3 @@ def install():
         puts(green('-> Config virtualenvwrapper for vagrant user'))    
         cuisine.run('echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc')
         cuisine.run('source /usr/local/bin/virtualenvwrapper.sh')
-
-    

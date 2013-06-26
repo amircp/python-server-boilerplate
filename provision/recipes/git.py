@@ -14,9 +14,8 @@ from fabric.utils import puts
 ## Install packages 
 ##
 def install():
-    """ Install packages """
+    """ Install git packages """
 
-    # Install packages
     puts(green('-> Installing gitolite'))
     cuisine.package_ensure('gitolite')
         
@@ -25,17 +24,17 @@ def install():
 
 
 ##
-## Tasks for remote hosts
+## Setup for gitolite
 ##
-def config(public_key):
+def setup():
     """ Config gitolite """
 
-    puts(green('-> Uploading admin public key'))    
+    puts(green('-> Uploading admin public key'))  
+    public_key = raw_input('Enter path of your public key: ')
     cuisine.file_upload('/tmp/admin.pub', public_key)
     
-    # Launch gitolite config
-    puts(green('-> Configure gitolite'))
-    puts(red('== Options '))
+    puts(green('-> Configuring gitolite'))
+    puts(red('== Options for wizard '))
     puts(red('== user -> git '))
     puts(red('== path -> /home/git/ '))
     puts(red('== key -> /tmp/admin.pub '))

@@ -6,7 +6,7 @@
 """
 
 import cuisine
-from fabric.colors import red, green
+from fabric.colors import green
 from fabric.utils import puts
 
 
@@ -14,9 +14,8 @@ from fabric.utils import puts
 ## Install packages 
 ##
 def install():
-    """ Install packages """
+    """ Install postgres packages """
 
-    # Install packages
     puts(green('-> Installing postgres'))
     if not cuisine.dir_exists('/etc/postgresql'):
         cuisine.sudo('echo "deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main" > /etc/apt/sources.list.d/pgdg.list')
@@ -33,20 +32,23 @@ def install():
     
 
 ##
-## Tasks for remote hosts
+## Database setup
 ##
 def create_user(username):
-    """ Create user """
+    """ Create postgres username """
 
-    # Launch gitolite config
     puts(green('-> Creating postgres username'))
     cuisine.sudo('createuser -d -l -R -E -W %s' % username, user='postgres')
 
-def create_db(db, username):
-    """ Create user and database """
 
-    # Launch gitolite config
+def create_db(db):
+    """ Create postgres database """
+
     puts(green('-> Creating postgres database'))
     cuisine.sudo('psql -c "CREATE DATABASE %s;"' % db, user='postgres')
-    cuisine.sudo('psql -c "GRANT ALL PRIVILEGES ON DATABASE %s to %s;"' % (db, username), user='postgres')
 
+
+def create_grant(username, db):
+    """ Create postgres database """
+    puts(green('-> Creating permissions'))    
+    cuisine.sudo('psql -c "GRANT ALL PRIVILEGES ON DATABASE %s to %s;"' % (db, username), user='postgres')
