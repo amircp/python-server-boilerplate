@@ -16,7 +16,7 @@ DEFAULT_USER = 'nekro'
 ##
 ## Install packages 
 ##
-def install(username, password, public_key):
+def install(username, password):
     """ Install packages """
 
     if not cuisine.user_check(username):

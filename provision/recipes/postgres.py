@@ -24,6 +24,12 @@ def install():
         cuisine.package_update()
     cuisine.package_ensure('postgresql')
     cuisine.package_ensure('postgresql-server-dev-9.2')
+
+    puts(green('-> Configre postgres user login'))    
+    old_srt = "local   all             all                                     peer"
+    new_srt = "local   all             all                                     trust"
+    cuisine.sudo('echo "local       %s     %s           trust" >> /etc/postgresql/9.2/main/pg_hba.conf' % (db, username))
+    cuisine.sudo('sed -i "s/%s/%s/g" /etc/postgresql/9.2/main/pg_hba.conf' % (old_srt, new_srt))
     
 
 ##
@@ -37,11 +43,10 @@ def create_user(username):
     cuisine.sudo('createuser -d -l -R -E -W %s' % username, user='postgres')
 
 def create_db(db, username):
-    """ Create user """
+    """ Create user and database """
 
     # Launch gitolite config
     puts(green('-> Creating postgres database'))
     cuisine.sudo('psql -c "CREATE DATABASE %s;"' % db, user='postgres')
     cuisine.sudo('psql -c "GRANT ALL PRIVILEGES ON DATABASE %s to %s;"' % (db, username), user='postgres')
-    cuisine.sudo('echo "local       %s     %s           trust" >> /etc/postgresql/9.2/main/pg_hba.conf' % (db, username))
 

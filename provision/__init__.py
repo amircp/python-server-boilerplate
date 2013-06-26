@@ -47,13 +47,13 @@ def update_host():
     """ Update packages database"""
 
     puts(red('-- Updating packages database'))
-    cuisine.package_update()
+    cuisine.sudo(cuisine.package_update())
 
 def upgrade_host():
     """ Upgrade system"""
 
     puts(red('-- Upgrading packages'))
-    cuisine.package_upgrade()
+    cuisine.sudo(cuisine.package_upgrade())
 
 
 ##
