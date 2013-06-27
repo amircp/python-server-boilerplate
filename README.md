@@ -23,8 +23,34 @@ Install cuisine:
 - Add or edit config files in __provision/config__.
 - The main provisioning function is __setup_hosts__ in __fabfile.py__, you can edit this function or add more.
 - You can add more enviroments in __provision/enviroments.py__.
-- Edit __settings.json__ for add staging or production hosts/public_keys. Also you can edit options for vagrant or add new options for your commands.
+- Edit __settings.json__ for add staging or production hosts/private_keys. Also you can edit options for vagrant or add new options for your commands.
 - The development enviroment is only for vagrant.
+- Example of the __settings.cfg__:
+
+        {
+            "enviroments": {
+                "development": {
+                        "IP" : "192.168.13.37",
+                        "USERNAME" : "vagrant",
+                        "VAGRANT_PRIVATE_KEY_PATH": "/Users/alvarolizama/.vagrant.d/insecure_private_key",
+                        "PROVISIONER_COMMAND" : "setup_host",
+                        "SRC_MOUNT_DIR" : "/home/vagrant/src"
+                },
+                "staging": {
+                        "USERNAME": "",
+                        "HOSTS" : [
+                        ],
+                        "PRIVATE_KEY_PATH" : ""
+                },
+                "production": {
+                        "USERNAME": "root",            
+                        "HOSTS" : [
+                            "192.168.13.37:22"
+                        ],
+                        "PRIVATE_KEY_PATH" : "/Users/alvarolizama/.ssh/work.pem"
+                }
+            }
+        }
 
 ##### Run vagrant #####
 
