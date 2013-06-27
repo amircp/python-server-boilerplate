@@ -32,6 +32,7 @@ Install cuisine:
                 "development": {
                         "IP" : "192.168.13.37",
                         "USERNAME" : "vagrant",
+                        "PASSWORD" : "vagrant",
                         "VAGRANT_PRIVATE_KEY_PATH": "/Users/alvarolizama/.vagrant.d/insecure_private_key",
                         "PROVISIONER_COMMAND" : "setup_host",
                         "SRC_MOUNT_DIR" : "/home/vagrant/src"

@@ -34,11 +34,11 @@ def install():
 ##
 ## Database setup
 ##
-def create_user(username):
+def create_user(username, password):
     """ Create postgres username """
 
     puts(green('-> Creating postgres username'))
-    cuisine.sudo('createuser -d -l -R -E -W %s' % username, user='postgres')
+    cuisine.sudo('psql -c "CREATE USER %s WITH PASSWORD \'%s\';"' % (username, password), user='postgres')
 
 
 def create_db(db):

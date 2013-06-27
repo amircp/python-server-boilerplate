@@ -22,6 +22,7 @@ def development():
     private_key = settings["enviroments"]['development']['VAGRANT_PRIVATE_KEY_PATH']        
     env.user = username
     env.hosts = ['%s:22' % ip]
+    env.password = settings["enviroments"]['development']['PASSWORD']
     env.key_filename = private_key
 
 
