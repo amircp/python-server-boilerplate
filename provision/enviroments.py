@@ -17,12 +17,12 @@ from provision import settings
 def development():
     """ Setup for vagrant box """
     puts(red('-- Working in vagrant box'))
-    username = settings["enviroments"]["development"]['BOX_USERNAME']
-    password = settings["enviroments"]["development"]['BOX_PASSWORD']
-    ip = settings["enviroments"]["development"]['BOX_IP']
+    username = settings["enviroments"]["development"]['USERNAME']
+    ip = settings["enviroments"]["development"]['IP']
+    private_key = settings["enviroments"]['development']['VAGRANT_PRIVATE_KEY_PATH']        
     env.user = username
     env.hosts = ['%s:22' % ip]
-    env.password = password
+    env.key_filename = private_key
 
 
 def staging():
@@ -30,10 +30,10 @@ def staging():
     puts(red('-- Working in staging enviroment'))
     username = settings["enviroments"]['staging']['USERNAME']
     hosts = settings["enviroments"]['staging']['HOSTS']
-    public_key = settings["enviroments"]['staging']['PUBLIC_KEY_PATH']    
-    env.username = username
+    private_key = settings["enviroments"]['staging']['PRIVATE_KEY_PATH']    
+    env.user = username
     env.hosts = hosts
-    env.key_filename = public_key
+    env.key_filename = private_key
 
 
 def production():
@@ -41,7 +41,7 @@ def production():
     puts(red('-- Working in production enviroment'))   
     username = settings["enviroments"]['production']['USERNAME']    
     hosts = settings["enviroments"]['production']['HOSTS']
-    public_key = settings["enviroments"]['production']['PUBLIC_KEY_PATH']    
-    env.username = username    
+    private_key = settings["enviroments"]['production']['PRIVATE_KEY_PATH']    
+    env.user = username    
     env.hosts = hosts
-    env.key_filename = public_key
+    env.key_filename = private_key

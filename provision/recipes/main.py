@@ -54,6 +54,7 @@ def setup():
 
     puts(green('-> Configuring SSHD')) 
     cuisine.sudo('sed -i "s/LoginGraceTime 120/LoginGraceTime 30/g" /etc/ssh/sshd_config') 
+    cuisine.sudo('sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config') 
     puts(green('-> Restart SSHD')) 
     cuisine.sudo('/etc/init.d/ssh restart')
 

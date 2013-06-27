@@ -13,9 +13,9 @@ Vagrant.configure("2") do |config|
 
     config.vm.guest = :linux
     config.vm.provision :fabric do |fab|
-        fab.tasks = [@cfg["vagrant"]["PROVISIONER_COMMAND"]]
+        fab.tasks = [@cfg["enviroments"]["development"]["PROVISIONER_COMMAND"]]
     end
-    config.vm.network :private_network, ip: @cfg["vagrant"]["BOX_IP"]
-    config.vm.synced_folder "src/", @cfg["vagrant"]["SRC_MOUNT_DIR"]
+    config.vm.network :private_network, ip: @cfg["enviroments"]["development"]["IP"]
+    config.vm.synced_folder "src/", @cfg["enviroments"]["development"]["SRC_MOUNT_DIR"]
     #config.vm.network :forwarded_port, host: 8000, guest: 8000
 end
